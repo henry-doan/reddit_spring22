@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SubForm from './SubForm';
+import Topics from '../topics/Topics';
 
 const Sub = ({ id, title, updateSub, deleteSub }) => {
   const [editing, setEdit] = useState(false)
@@ -24,11 +25,16 @@ const Sub = ({ id, title, updateSub, deleteSub }) => {
           <button 
             onClick={() => setEdit(true)}
             style={styles.btn}
-          >Edit</button>
+          >
+            Edit
+          </button>
           <button 
             onClick={() => deleteSub(id)}
             style={styles.deleteBtn}
-          >Delete</button>
+          >
+            Delete
+          </button>
+          <Topics subId={id} />
         </>
       }
     </>
