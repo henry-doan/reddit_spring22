@@ -27,9 +27,30 @@ const Topics = ({}) => {
     .catch( err => console.log(err))
   }
 
-  // update
+  // update 
+  const updateTopic = (id, topic) => {
+    axios.put(`/api/subs/${subId}/topics/${id}`, { topic })
+      .then( res => {
+        const newUpdatedTopics = topics.map( t => {
+          if (t.id === id) {
+            return res.data 
+          }
+          return t
+        })
+        setTopics(newUpdatedTopics)
+      })
+      .catch( err => console.log(err))
+  }
 
   // destroy
+  const deleteTopic = (id) => {
+    axios.delete(`/api/subs/${subId}/topics/${id}`)
+      .then( res => {
+        setTopics( topics.filter( t => t.id !== id ))
+        alert(res.data.message)
+      })
+      .catch( err => console.log(err))
+  }
 
   return (
     <>
@@ -38,6 +59,8 @@ const Topics = ({}) => {
       <TopicForm addTopic={addTopic} />
       <TopicList
         topics={topics}
+        updateTopic={updateTopic}
+        deleteTopic={deleteTopic}
       />
     </>
   )
