@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import TopicForm from './TopicForm';
+import { Link } from 'react-router-dom';
 
+// export Link
 const Topic = ({ id, title, body, fav, updateTopic, deleteTopic }) => {
   const [editing, setEdit] = useState(false)
 
@@ -25,6 +27,11 @@ const Topic = ({ id, title, body, fav, updateTopic, deleteTopic }) => {
           <p>Favorite: {fav ? "☆ favorite" : "x not favorite"}</p>
           <button onClick={() => setEdit(true)}>Edit</button>
           <button onClick={() => deleteTopic(id)}>Delete</button>
+          <Link to={`/topics/${id}/comments`}>
+            <button>
+              go to Comments
+            </button>
+          </Link>
         </>
       }
     </>
